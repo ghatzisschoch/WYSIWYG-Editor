@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>WYSIWYG Editor</title>
+        <style type="text/css">
+            #ui
+            {
+                width: 200px;
+                height: auto;
+                border: 3px solid black;
+                position:absolute;
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+            .uibutton
+            {
+                width:200px;
+                margin-bottom: 5px;
+            }
+            #uihide
+            {
+                float: right;
+            }
+        </style>
+    </head>
+
+
+    <body>
+        <button id="uihide" onclick="hideUI();"> Hide UI </button>
+
+        <textarea id="uicodearea" class="ui" readonly style="position:absolute;height:460px;width:480px;top:230px;left:1300px" onmousedown="listen(this);"></textarea>
+
+        <textarea id="uiscriptarea"  style="position:absolute;height:700px;width:500px;top:20px;left:230px;visibility:hidden;"></textarea>
+        <div id ="uiscriptDiv" style="position:absolute;height:50px;width:50px;top:0px;left:230px;visibility:hidden"> Javascript: </div>
+
+
+        <textarea id="uiselectionarea" style="position:absolute;height:700px;width:500px;top:20px;left:230px;visibility:hidden;"></textarea>
+        <div id ="uiselectionDiv" style="position:absolute;height:20px;width:150px;top:0px;left:230px;visibility:hidden"> Selection code: </div>
+
+        <div id="uidirectionsdiv" class="ui" style="position:absolute;height:700px;width:1000px;top:20px;left:230px;visibility:hidden;">
+            <p><strong>Directions</strong>:</p>
+            <p>User Interface documentation:</p>
+            <p><span style="text-decoration: underline;"><strong>Buttons</strong>:</span></p>
+            <p><strong>Make New Element</strong>: Creates a new element of any time (e.g. button, div, textarea, input.</p>
+            <p><strong>Change Color of Selection</strong>: Prompts and changes the color of the current selection.</p>
+            <p><strong>Delete Current Selection</strong>: Removes the current selection from the page (Shortcut: DEL key).</p>
+            <p><strong>Edit Selection onClick()</strong>: Prompts and changes the onclick function of the current selection. JavaScript functions which are added using the \" Add JavaScript functions \" button are able to be called here.</p>
+            <p><strong>Add JavaScript functions:</strong> Displays a textarea in which JavaScript code and functions can be input. The code will be added to the generated page in a SCRIPT element.</p>
+            <p><strong>View Selection Code:</strong> Displays all of the user-generated elements on the page.</p>
+            <p><strong>Search &amp; Select elements by ID:</strong> Prompts for the id of the desired element, and if found displays the element's code and selects the element.</p>
+            <p><strong>Hide page code:</strong> Hides the user-generated code textarea. Click again to show the page code</p>
+            <p><strong>Copy page code:</strong> Alerts a model box which is copyable through the use of <b>CRTL+C</b>.</p>
+            <p><strong>Save page:</strong> Saves all user-generated elements using localStorage. This allows the page to be saved for later use.</p>
+            <p><strong>Load page:</strong> Loads all user-generated elements saved previously using localStorage. This will NOT delete any current elements from the page, and will only append saved elements to the page.</p>
+            <p><span style="text-decoration: underline;"><strong>Other UI Functions:</strong></span></p>
+            <p>The UI "toolbox" and page code-area can be dragged around the page by simply right-clicking on it and moving the mouse. Releasing the right mouse-button will stop the dragging.</p>
+            <p>The UI can be hidden using the "Hide UI" button, which is always found in the top right corner of the page.</p>
+            <p><b>UNDO CHANGES</b>: To undo changes press <b>CTRL+Z</b>.</p>
+            <p>&nbsp;</p>
+        </div>
+
+        <div id="ui" onmousedown="listen(this)" class="ui">
+            <div id="uiselect"> </div>
+            <button id="uicreateButton" class="uibutton ui" onclick="makeElement();"> Make New Element </button>
+            <button id="uicolor" class="uibutton ui" onclick="color();"> Change Color of Selection </button>
+            <button id="uideleteButton" class="uibutton ui" onclick="deleteSelection();"> Delete Current Selection </button>
+            <button id="uionclickButton"  class="uibutton ui" onclick="editOnclick();"> Edit Selection onClick() </button>
+            <button id="uiscriptButton" class="uibutton ui" onclick="editScript();"> Add JavaScript functions </button>
+            <button id="uiselectionButton" class="uibutton ui" onclick="editHTML();"> View Selection Code </button>
+            <button id="uisearchElemButton"  class="uibutton ui">Search & Select elements by ID</button>
+            <button id="uiviewcodeButton"  class="uibutton ui">Hide page code</button>
+            <button id="uicopyButton"  class="uibutton ui" onclick="copyPage();">Copy page code</button>
+            <button id="uisaveButton" class="uibutton ui" onclick="savePage();">Save page</button>
+            <button id="uiloadButton"  class="uibutton ui" onclick="loadPage();">Load page</button>
+            <button id="uidirectionsButton"  class="uibutton ui">Show directions</button>
+        </div>
+
+
+
+
+        <div id ="user">
+        </div>
+
+
+
+
+
+
+        <script src="IBIO.js"></script>
+        <script src = "app.js">
+        </script>
+    </body>
+
+
+</html>
+
